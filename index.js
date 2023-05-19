@@ -1,10 +1,4 @@
-import { Configuration, OpenAIApi } from 'openai'
 
-const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
-})
-
-const openai = new OpenAIApi(configuration)
 
 const chatbotConversation = document.getElementById('chatbot-conversation')
  
@@ -25,24 +19,26 @@ document.addEventListener('submit', (e) => {
 
 async function fetchReply(){
 
-    fetch('https://deft-smakager-03b2a5.netlify.app/.netlify/functions/fetchAI', {
+    const url = "https://deft-smakager-03b2a5.netlify.app/.netlify/functions/fetchAI"
+
+    const response = await fetch(url, {
         method: "POST",
-        body: JSON.stringify({
-            title: conversationStr
-        }),
+        body: conversationStr,
         headers: {
-            "Content-Type": "text/plain"
+            "content-type": "text/plain"
         }
-    }).then(res => res.json()).then(data => console.log(data))
+    })
+    const data = await response.json()
+    console.log(data)
 
 
-    const response = await openai.createCompletion({
-        model: 'davinci:ft-personal-2023-05-19-18-56-04',
-        prompt: conversationStr,
-        max_tokens: 100,
-        temperature: 0,
-        stop: ['\n','->']
-    }) 
+    // const response = await openai.createCompletion({
+    //     model: 'davinci:ft-personal-2023-05-19-18-56-04',
+    //     prompt: conversationStr,
+    //     max_tokens: 100,
+    //     temperature: 0,
+    //     stop: ['\n','->']
+    // }) 
     
     //conversationStr += ` ${response.data.choices[0].text} \n`
     //renderTypewriterText(response.data.choices[0].text)
