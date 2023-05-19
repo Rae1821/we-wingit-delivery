@@ -24,6 +24,18 @@ document.addEventListener('submit', (e) => {
 }) 
 
 async function fetchReply(){
+
+    fetch('https://deft-smakager-03b2a5.netlify.app/.netlify/functions/fetchAI', {
+        method: "POST",
+        body: JSON.stringify({
+            title: conversationStr
+        }),
+        headers: {
+            "Content-Type": "text/plain"
+        }
+    }).then(res => res.json()).then(data => console.log(data))
+
+
     const response = await openai.createCompletion({
         model: 'davinci:ft-personal-2023-05-19-18-56-04',
         prompt: conversationStr,
@@ -32,8 +44,8 @@ async function fetchReply(){
         stop: ['\n','->']
     }) 
     
-    conversationStr += ` ${response.data.choices[0].text} \n`
-    renderTypewriterText(response.data.choices[0].text)
+    //conversationStr += ` ${response.data.choices[0].text} \n`
+    //renderTypewriterText(response.data.choices[0].text)
 }
 
 function renderTypewriterText(text) {
