@@ -32,13 +32,6 @@ async function fetchReply(){
     console.log(data)
 
 
-    // const response = await openai.createCompletion({
-    //     model: 'davinci:ft-personal-2023-05-19-18-56-04',
-    //     prompt: conversationStr,
-    //     max_tokens: 100,
-    //     temperature: 0,
-    //     stop: ['\n','->']
-    // }) 
     
     //conversationStr += ` ${response.data.choices[0].text} \n`
     //renderTypewriterText(response.data.choices[0].text)
