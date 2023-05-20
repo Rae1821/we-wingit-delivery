@@ -19,14 +19,14 @@ document.addEventListener('submit', (e) => {
 
 async function fetchReply(){
 
-    const url = "https://deft-smakager-03b2a5.netlify.app/.netlify/functions/fetchAI"
+    const url = "https://we-wingit-drone-delivery.netlify.app/.netlify/functions/fetchAI"
 
     const response = await fetch(url, {
         method: "POST",
-        body: conversationStr,
         headers: {
             "content-type": "text/plain"
-        }
+        },
+        body: conversationStr,
     })
     const data = await response.json()
     console.log(data)
