@@ -1,5 +1,3 @@
-
-
 const chatbotConversation = document.getElementById('chatbot-conversation')
  
 let conversationStr = '' 
