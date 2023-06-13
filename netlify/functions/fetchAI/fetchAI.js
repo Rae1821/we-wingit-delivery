@@ -13,10 +13,10 @@ const handler = async (event) => {
         model: 'davinci:ft-personal-2023-05-19-18-56-04',
         prompt: event.body,
         max_tokens: 100,
-        temperature: 0,
+        temperature: 0.1,
         stop: ['\n','->']
     }) 
-    const subject = event.queryStringParameters.name || 'World'
+    //const subject = event.queryStringParameters.name || 'World'
     return {
       statusCode: 200,
       body: JSON.stringify({ 
@@ -24,7 +24,7 @@ const handler = async (event) => {
        }),
     }
   } catch (error) {
-    return { statusCode: 500, body: error.toString() }
+      return { statusCode: 500 }
   }
 }
 
